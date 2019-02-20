@@ -48,37 +48,37 @@ class CalculatorManager {
                 
             case Operations.Addition.rawValue:
                 
-                textOnScreen = "+"
+                textOnScreen = Signs.addition.rawValue
                 completionBlock(.success(result: textOnScreen))
                 break
                 
             case Operations.Substraction.rawValue:
                 
-                textOnScreen = "-"
+                textOnScreen = Signs.substruction.rawValue
                 completionBlock(.success(result: textOnScreen))
                 break
                 
             case Operations.Multiply.rawValue:
                 
-                textOnScreen = "X"
+                textOnScreen = Signs.multiplication.rawValue
                 completionBlock(.success(result: textOnScreen))
                 break
                 
             case Operations.Division.rawValue:
                 
-                textOnScreen = "/"
+                textOnScreen = Signs.division.rawValue
                 completionBlock(.success(result: textOnScreen))
                 break
                 
             case Operations.Percent.rawValue:
                 
-                textOnScreen = "%"
+                textOnScreen = Signs.percent.rawValue
                 completionBlock(.success(result: textOnScreen))
                 break
                 
             case Operations.Power.rawValue:
                 
-                textOnScreen = "^"
+                textOnScreen = Signs.power.rawValue
                 completionBlock(.success(result: textOnScreen))
                 break
                 
@@ -178,9 +178,9 @@ class CalculatorManager {
         }
         else if tag == Operations.Dot.rawValue {
             
-            guard !textOnScreen.contains(".") else { return }
+            guard !textOnScreen.contains(Signs.dot.rawValue) else { return }
             
-            textOnScreen = textOnScreen + "."
+            textOnScreen = textOnScreen + Signs.dot.rawValue
             numberOnScreen = Double(textOnScreen)
             completionBlock(.success(result: textOnScreen))
         }

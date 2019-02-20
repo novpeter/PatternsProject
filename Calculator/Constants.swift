@@ -30,3 +30,13 @@ let defaultNumberOnScreen: Double = 0
 let defaultPreviuosNumber: Double = 0
 let defaultOperation = 0
 let defaultTextOnScreen = ""
+
+enum Signs: String {
+    case dot = "."
+    case addition = "+"
+    case substruction = "-"
+    case multiplication = "x"
+    case division = "/"
+    case power = "^"
+    case percent = "%"
+}
