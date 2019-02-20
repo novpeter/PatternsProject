@@ -29,16 +29,14 @@ class MVPCalculatorController: UIViewController, MVPViewInput {
     }
     
     func showResult(_ result: String?) {
-        resultLabel.text = result ?? "Nan";
+        resultLabel.text = result;
     }
     
     func showAlert(_ message: String?) {
         
         let alert = UIAlertController(title: "Hey, bro!", message: message, preferredStyle: .alert)
         
-        let okButton = UIAlertAction(title: "Ok", style: .default) { (action) in
-            
-        }
+        let okButton = UIAlertAction(title: "Ok", style: .default, handler: nil)
         
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)

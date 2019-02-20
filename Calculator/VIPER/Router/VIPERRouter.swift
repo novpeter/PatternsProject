@@ -19,13 +19,9 @@ class VIPERRouter: VIPERRouterInput {
         
         let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
         
-        let okButton = UIAlertAction(title: "Ok", style: .default) { (action) in
-            
-        }
+        let okButton = UIAlertAction(title: "Ok", style: .default, handler: nil)
         
         alert.addAction(okButton)
         view.present(alert, animated: true, completion: nil)
-        
-        UIAlertView.self
     }
 }

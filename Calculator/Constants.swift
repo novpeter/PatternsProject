@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 enum Operations: Int {
     case Addition = 13
     case Substraction = 14
@@ -22,4 +23,10 @@ enum Operations: Int {
 
 enum Errors: String {
     case DivisionOnZero = "Devision on zero"
+    case WrongTag = "Wrong tag"
 }
+
+let defaultNumberOnScreen: Double = 0
+let defaultPreviuosNumber: Double = 0
+let defaultOperation = 0
+let defaultTextOnScreen = ""

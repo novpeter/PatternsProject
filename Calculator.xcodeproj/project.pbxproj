@@ -22,6 +22,7 @@
 		4B270A902219B5F000F71CAE /* VIPERInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B270A8F2219B5F000F71CAE /* VIPERInteractorOutput.swift */; };
 		4B270A922219B60100F71CAE /* VIPERPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B270A912219B60100F71CAE /* VIPERPresenter.swift */; };
 		4B270A962219DD7D00F71CAE /* VIPERRouterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B270A952219DD7D00F71CAE /* VIPERRouterOutput.swift */; };
+		4B2E2DD0221DC950009E0737 /* CalculationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2E2DCF221DC950009E0737 /* CalculationManager.swift */; };
 		4BE928872216F98E0033B6E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE928862216F98E0033B6E8 /* AppDelegate.swift */; };
 		4BE928892216F98E0033B6E8 /* MVPCalculatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE928882216F98E0033B6E8 /* MVPCalculatorController.swift */; };
 		4BE9288C2216F98E0033B6E8 /* MVPStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BE9288A2216F98E0033B6E8 /* MVPStoryboard.storyboard */; };
@@ -47,6 +48,7 @@
 		4B270A8F2219B5F000F71CAE /* VIPERInteractorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPERInteractorOutput.swift; sourceTree = "<group>"; };
 		4B270A912219B60100F71CAE /* VIPERPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPERPresenter.swift; sourceTree = "<group>"; };
 		4B270A952219DD7D00F71CAE /* VIPERRouterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPERRouterOutput.swift; sourceTree = "<group>"; };
+		4B2E2DCF221DC950009E0737 /* CalculationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationManager.swift; sourceTree = "<group>"; };
 		4BE928832216F98E0033B6E8 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BE928862216F98E0033B6E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BE928882216F98E0033B6E8 /* MVPCalculatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPCalculatorController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			children = (
 				4BE928992216F9AB0033B6E8 /* VIPER */,
 				4BE928982216F99C0033B6E8 /* MVP */,
+				4B2E2DCF221DC950009E0737 /* CalculationManager.swift */,
 				4B270A762219B26900F71CAE /* Constants.swift */,
 				4BE928862216F98E0033B6E8 /* AppDelegate.swift */,
 				4BE9288D2216F9910033B6E8 /* Assets.xcassets */,
@@ -261,6 +264,7 @@
 				4BE928872216F98E0033B6E8 /* AppDelegate.swift in Sources */,
 				4B270A962219DD7D00F71CAE /* VIPERRouterOutput.swift in Sources */,
 				4B270A902219B5F000F71CAE /* VIPERInteractorOutput.swift in Sources */,
+				4B2E2DD0221DC950009E0737 /* CalculationManager.swift in Sources */,
 				4B270A862219B49800F71CAE /* VIPERViewOutput.swift in Sources */,
 				4B270A772219B26900F71CAE /* Constants.swift in Sources */,
 				4B11C2AE2218868600B4F528 /* MVPViewInput.swift in Sources */,

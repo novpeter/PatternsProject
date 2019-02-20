@@ -16,10 +16,10 @@ protocol MVPViewOutput: AnyObject {
     /// Handle opeartion button click
     ///
     /// - Parameter tag: button tag
-    func didOperationButtonPressed(_ tag: Int!)
+    func didOperationButtonPressed(_ tag: Int?)
     
     /// Handle number button click
     ///
     /// - Parameter tag: button tag
-    func didNumberButtonPressed(_ tag: Int!)
+    func didNumberButtonPressed(_ tag: Int?)
 }

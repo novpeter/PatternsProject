@@ -11,182 +11,57 @@ import Foundation
 class VIPERInteractor: VIPERInteractorInput {
     
     weak var output: VIPERInteractorOutput!
-    
-    /// Text on screen
-    var textOnScreen: String!
-    
-    /// Number on screen
-    var numberOnScreen: Double!
-    /// Previous number
-    var previuosNumber: Double!
-    
-    /// Flag of math operation
-    var perfomingMath: Bool = false
-    /// Tag of math operation
-    var operation: Int!
+    var calculatorManager: CalculatorManager!
     
     
     /// Set up initaia state of Calculator controller
     func setupInitialState() {
+        calculatorManager.setupInititalState { (calculationResult) in
+            
+            switch calculationResult {
+                
+            case .success(let result):
+                output.didButtonClickProcessingCompleted(result)
+            case .failure(let error):
+                output.handleError(error)
+            }
+        }
         
-        numberOnScreen = 0
-        previuosNumber = 0
-        operation = 0
-        textOnScreen = ""
-        output.didButtonClickProcessingCompleted(textOnScreen)
     }
     
     
     ///  Handle operation button pressing
     ///
     /// - Parameter tag: button tag
-    func didOperationButtonPressed(_ tag: Int!) {
+    func didOperationButtonPressed(_ tag: Int?) {
         
-        if textOnScreen != "" && tag != Operations.Clear.rawValue && tag != Operations.Equal.rawValue {
+        calculatorManager.handleOperationButtonPressed(tag, completionBlock: { (calculationResult) in
             
-            previuosNumber = numberOnScreen
-            
-            switch tag {
+            switch calculationResult {
                 
-            case Operations.Addition.rawValue:
-                
-                textOnScreen = "+"
-                output.didButtonClickProcessingCompleted(textOnScreen)
-                break
-                
-            case Operations.Substraction.rawValue:
-                
-                textOnScreen = "-"
-                output.didButtonClickProcessingCompleted(textOnScreen)
-                break
-                
-            case Operations.Multiply.rawValue:
-                
-                textOnScreen = "X"
-                output.didButtonClickProcessingCompleted(textOnScreen)
-                break
-                
-            case Operations.Division.rawValue:
-                
-                textOnScreen = "/"
-                output.didButtonClickProcessingCompleted(textOnScreen)
-                break
-                
-            case Operations.Percent.rawValue:
-                
-                textOnScreen = "%"
-                output.didButtonClickProcessingCompleted(textOnScreen)
-                break
-                
-            case Operations.Power.rawValue:
-                
-                textOnScreen = "^"
-                output.didButtonClickProcessingCompleted(textOnScreen)
-                break
-                
-            default:
-                break
+            case .success(let result):
+                output.didButtonClickProcessingCompleted(result)
+            case .failure(let error):
+                output.handleError(error)
             }
-            
-            operation = tag
-            perfomingMath = true
-        }
-        else if tag == Operations.Equal.rawValue {
-            
-            switch operation {
-                
-            case Operations.Addition.rawValue:
-                
-                numberOnScreen = previuosNumber + numberOnScreen
-                textOnScreen = String(numberOnScreen)
-                output.didButtonClickProcessingCompleted(textOnScreen)
-                break
-                
-            case Operations.Substraction.rawValue:
-                
-                numberOnScreen = previuosNumber - numberOnScreen
-                textOnScreen = String(numberOnScreen)
-                output.didButtonClickProcessingCompleted(textOnScreen)
-                break
-                
-            case Operations.Multiply.rawValue:
-                
-                numberOnScreen = previuosNumber * numberOnScreen
-                textOnScreen = String(numberOnScreen)
-                output.didButtonClickProcessingCompleted(textOnScreen)
-                break
-                
-            case Operations.Division.rawValue:
-                
-                guard numberOnScreen != 0 else {
-                    
-                    output.handleError(Errors.DivisionOnZero.rawValue)
-                    return
-                }
-                numberOnScreen = previuosNumber / numberOnScreen
-                textOnScreen = String(numberOnScreen)
-                output.didButtonClickProcessingCompleted(textOnScreen)
-                break
-                
-            case Operations.Percent.rawValue:
-                
-                numberOnScreen = previuosNumber / 100 * numberOnScreen
-                textOnScreen = String(numberOnScreen)
-                output.didButtonClickProcessingCompleted(textOnScreen)
-                break
-                
-            case Operations.Power.rawValue:
-                
-                numberOnScreen = pow(previuosNumber, numberOnScreen)
-                textOnScreen = String(numberOnScreen)
-                output.didButtonClickProcessingCompleted(textOnScreen)
-                break
-                
-            default:
-                break
-            }
-            
-            operation = tag
-        }
-        else if tag == Operations.Clear.rawValue {
-            
-            setupInitialState()
-        }
+        })
     }
     
     
     ///  Handle number button pressing
     ///
     /// - Parameter tag: button tag
-    func didNumberButtonPressed(_ tag: Int!) {
+    func didNumberButtonPressed(_ tag: Int?) {
         
-        if perfomingMath {
+        calculatorManager.handleNumberButtonPressed(tag, completionBlock: { (calculationResult) in
             
-            textOnScreen = String(tag - 1)
-            numberOnScreen = Double(textOnScreen)
-            output.didButtonClickProcessingCompleted(textOnScreen)
-            perfomingMath = false
-        }
-        else if tag == Operations.Dot.rawValue {
-            
-            guard !textOnScreen.contains(".") else { return }
-            
-            textOnScreen = textOnScreen + "."
-            numberOnScreen = Double(textOnScreen)
-            output.didButtonClickProcessingCompleted(textOnScreen)
-        }
-        else if operation == Operations.Equal.rawValue {
-            
-            operation = 0
-            textOnScreen = String(tag - 1)
-            numberOnScreen = Double(textOnScreen)
-            output.didButtonClickProcessingCompleted(textOnScreen)
-        }
-        else {
-            
-            textOnScreen = textOnScreen + String(tag - 1)
-            numberOnScreen = Double(textOnScreen)
-            output.didButtonClickProcessingCompleted(textOnScreen)
-        }
+            switch calculationResult {
+                
+            case .success(let result):
+                output.didButtonClickProcessingCompleted(result)
+            case .failure(let error):
+                output.handleError(error)
+            }
+        })
     }
 }

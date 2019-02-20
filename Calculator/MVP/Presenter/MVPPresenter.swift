@@ -12,183 +12,58 @@ import UIKit
 class MVPPresenter: MVPViewOutput {
     
     weak var view: MVPViewInput!
-    
-    /// Text on screen
-    var textOnScreen: String!
-    
-    /// Number on screen
-    var numberOnScreen: Double!
-    /// Previous number
-    var previuosNumber: Double!
-    
-    /// Flag of math operation
-    var perfomingMath: Bool = false
-    /// Tag of math operation
-    var operation: Int!
+    var calculatorManager: CalculatorManager!
     
     
-    /// Set up initaia state of Calculator controller
+    /// Set up initaial state of Calculator controller
     func setupInitialState() {
         
-        numberOnScreen = 0
-        previuosNumber = 0
-        operation = 0
-        textOnScreen = ""
-        view.showResult(textOnScreen)
+        calculatorManager.setupInititalState { (calculationResult) in
+            
+            switch calculationResult {
+                
+            case .success(let result):
+                view.showResult(result)
+            case .failure(let error):
+                view.showAlert(error)
+            }
+        }
     }
     
     
     ///  Handle operation button pressing
     ///
     /// - Parameter tag: button tag
-    func didOperationButtonPressed(_ tag: Int!) {
-        
-        if textOnScreen != "" && tag != Operations.Clear.rawValue && tag != Operations.Equal.rawValue {
+    func didOperationButtonPressed(_ tag: Int?) {
+                
+        calculatorManager.handleOperationButtonPressed(tag, completionBlock: { (calculationResult) in
             
-            previuosNumber = numberOnScreen
-            
-            switch tag {
+            switch calculationResult {
                 
-            case Operations.Addition.rawValue:
-                
-                textOnScreen = "+"
-                view.showResult(textOnScreen)
-                break
-                
-            case Operations.Substraction.rawValue:
-                
-                textOnScreen = "-"
-                view.showResult(textOnScreen)
-                break
-                
-            case Operations.Multiply.rawValue:
-                
-                textOnScreen = "X"
-                view.showResult(textOnScreen)
-                break
-                
-            case Operations.Division.rawValue:
-                
-                textOnScreen = "/"
-                view.showResult(textOnScreen)
-                break
-                
-            case Operations.Percent.rawValue:
-                
-                textOnScreen = "%"
-                view.showResult(textOnScreen)
-                break
-                
-            case Operations.Power.rawValue:
-                
-                textOnScreen = "^"
-                view.showResult(textOnScreen)
-                break
-                
-            default:
-                break
+            case .success(let result):
+                view.showResult(result)
+            case .failure(let error):
+                view.showAlert(error)
             }
-            
-            operation = tag
-            perfomingMath = true
-        }
-        else if tag == Operations.Equal.rawValue {
-            
-            switch operation {
-                
-            case Operations.Addition.rawValue:
-                
-                numberOnScreen = previuosNumber + numberOnScreen
-                textOnScreen = String(numberOnScreen)
-                view.showResult(textOnScreen)
-                break
-                
-            case Operations.Substraction.rawValue:
-                
-                numberOnScreen = previuosNumber - numberOnScreen
-                textOnScreen = String(numberOnScreen)
-                view.showResult(textOnScreen)
-                break
-                
-            case Operations.Multiply.rawValue:
-                
-                numberOnScreen = previuosNumber * numberOnScreen
-                textOnScreen = String(numberOnScreen)
-                view.showResult(textOnScreen)
-                break
-                
-            case Operations.Division.rawValue:
-                
-                guard numberOnScreen != 0 else {
-                    
-                    view.showAlert(Errors.DivisionOnZero.rawValue)
-                    return
-                }
-                numberOnScreen = previuosNumber / numberOnScreen
-                textOnScreen = String(numberOnScreen)
-                view.showResult(textOnScreen)
-                break
-                
-            case Operations.Percent.rawValue:
-                
-                numberOnScreen = previuosNumber / 100 * numberOnScreen
-                textOnScreen = String(numberOnScreen)
-                view.showResult(textOnScreen)
-                break
-                
-            case Operations.Power.rawValue:
-                
-                numberOnScreen = pow(previuosNumber, numberOnScreen)
-                textOnScreen = String(numberOnScreen)
-                view.showResult(textOnScreen)
-                break
-                
-            default:
-                break
-            }
-            
-            operation = tag
-        }
-        else if tag == Operations.Clear.rawValue {
-            
-            setupInitialState()
-        }
+        })
     }
     
     
     ///  Handle number button pressing
     ///
     /// - Parameter tag: button tag
-    func didNumberButtonPressed(_ tag: Int!) {
+    func didNumberButtonPressed(_ tag: Int?) {
         
-        if perfomingMath {
+        calculatorManager.handleNumberButtonPressed(tag, completionBlock: { (calculationResult) in
             
-            textOnScreen = String(tag - 1)
-            numberOnScreen = Double(textOnScreen)
-            view.showResult(textOnScreen)
-            perfomingMath = false
-        }
-        else if tag == Operations.Dot.rawValue {
-            
-            guard !textOnScreen.contains(".") else { return }
-            
-            textOnScreen = textOnScreen + "."
-            numberOnScreen = Double(textOnScreen)
-            view.showResult(textOnScreen)
-        }
-        else if operation == Operations.Equal.rawValue {
-            
-            operation = 0
-            textOnScreen = String(tag - 1)
-            numberOnScreen = Double(textOnScreen)
-            view.showResult(textOnScreen)
-        }
-        else {
-            
-            textOnScreen = textOnScreen + String(tag - 1)
-            numberOnScreen = Double(textOnScreen)
-            view.showResult(textOnScreen)
-        }
+            switch calculationResult {
+                
+            case .success(let result):
+                view.showResult(result)
+            case .failure(let error):
+                view.showAlert(error)
+            }
+        })
     }
 
 }

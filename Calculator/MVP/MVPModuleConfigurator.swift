@@ -23,7 +23,10 @@ class MVPModuleConfigurator: NSObject {
         guard let view = viewController as? MVPCalculatorController else { fatalError() }
         
         let presenter = MVPPresenter()
+        let calculatorManager = CalculatorManager()
+        
         view.presenter = presenter
+        presenter.calculatorManager = calculatorManager
         presenter.view = view
     }
 }

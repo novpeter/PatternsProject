@@ -17,11 +17,11 @@ protocol VIPERViewOutput: AnyObject {
     ///  Call interactor to handle operation button pressed
     ///
     /// - Parameter tag: button tag
-    func didOperationButtonPressed(_ tag: Int!)
+    func didOperationButtonPressed(_ tag: Int?)
     
     ///  Call interactor to handle number button pressed
     ///
     /// - Parameter tag: button tag
-    func didNumberButtonPressed(_ tag: Int!)
+    func didNumberButtonPressed(_ tag: Int?)
     
 }

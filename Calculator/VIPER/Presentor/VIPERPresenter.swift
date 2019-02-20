@@ -20,11 +20,11 @@ class VIPERPresenter: VIPERViewOutput, VIPERInteractorOutput {
         interactor.setupInitialState()
     }
     
-    func didOperationButtonPressed(_ tag: Int!) {
+    func didOperationButtonPressed(_ tag: Int?) {
         interactor.didOperationButtonPressed(tag)
     }
     
-    func didNumberButtonPressed(_ tag: Int!) {
+    func didNumberButtonPressed(_ tag: Int?) {
         interactor.didNumberButtonPressed(tag)
     }
     

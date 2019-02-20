@@ -30,7 +30,7 @@ class VIPERCalculatorController: UIViewController, VIPERViewInput {
     }
     
     func showResult(_ result: String?) {
-        resultLabel.text = result ?? "Nan";
+        resultLabel.text = result;
     }
     
 }
